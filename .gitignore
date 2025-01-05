@@ -1,0 +1,8 @@
+.classpath
+.project
+.settings/
+target/
+reports/
+test-output/
+src/test/resources/Secret.properties
+images/
