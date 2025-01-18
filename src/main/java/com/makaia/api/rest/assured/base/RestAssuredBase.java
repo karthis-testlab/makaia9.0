@@ -34,7 +34,7 @@ public class RestAssuredBase implements ApiClient {
 	@Override
 	public ResponseAPI post(RequestSpecification request, String endPoint, Object body) {
 		response = given(request)				   
-				   .body(new Gson().toJson(body))
+				   .body(body)
 				   .post(endPoint);
 		return new RestAssuredResponseBase(response);
 	}	
