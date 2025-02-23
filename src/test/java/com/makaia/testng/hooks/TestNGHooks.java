@@ -35,9 +35,9 @@ public class TestNGHooks extends SeleniumBase {
 			// When UI Test got failed, Bug ticket will create in the JIRA with screenshot as attachment
 			
 			new IssueService()
-		    .createBugIssue("[Bug] - Automatio Script - "+result.getMethod().getMethodName())
-		    .extractIssueId()
-		    .testEvidenceAttachment("./images/" + result.getName() + ".png");
+			   .createBugIssue("[BUG] TS Case Failed!")
+			   .extractIssueId()
+			   .testEvidenceAttachment("./images/" + result.getName() + ".png");
 		}
 
 		quit();
