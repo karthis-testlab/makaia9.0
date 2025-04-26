@@ -13,13 +13,12 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import com.makaia.general.utils.Reporter;
 import com.makaia.selenium.api.design.Browser;
 import com.makaia.selenium.api.design.Element;
 import com.makaia.selenium.api.design.Locators;
 import static com.makaia.general.utils.PropertiesHandler.config;
 
-public class SeleniumBase extends Reporter implements Browser, Element {	
+public class SeleniumBase extends DriverInstance implements Browser, Element {	
 	
 	public void click(WebElement ele) {
 		ele.click();
@@ -88,11 +87,11 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 				break;
 			}
 		} catch (NoSuchElementException e) {
-			reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value + "\n"
-					+ e.getMessage(), "fail");
+			throw new RuntimeException("The Element with locator:" + locatorType + " Not Found with value: " + value + "\n"
+					+ e.getMessage());
 		} catch (Exception e) {
-			reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value + "\n"
-					+ e.getMessage(), "fail");
+			throw new RuntimeException("The Element with locator:" + locatorType + " Not Found with value: " + value + "\n"
+					+ e.getMessage());
 		}
 		return null;
 	}
@@ -121,11 +120,11 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 				break;
 			}
 		} catch (NoSuchElementException e) {
-			reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value + "\n"
-					+ e.getMessage(), "fail");
+			throw new RuntimeException("The Element with locator:" + locatorType + " Not Found with value: " + value + "\n"
+					+ e.getMessage());
 		} catch (Exception e) {
-			reportStep("The Element with locator:" + locatorType + " Not Found with value: " + value + "\n"
-					+ e.getMessage(), "fail");
+			throw new RuntimeException("The Element with locator:" + locatorType + " Not Found with value: " + value + "\n"
+					+ e.getMessage());
 		}
 		return null;
 	}
@@ -138,17 +137,18 @@ public class SeleniumBase extends Reporter implements Browser, Element {
 		getDriver().quit();
 	}
 
-	public long takeSnap() {
-		long number = (long) Math.floor(Math.random() * 900000000L) + 10000000L;
+	public String takeSnap(String testName) {	
+		String snapShotPath = null;
 		try {
+			snapShotPath = System.getProperty("user.dir") + "\\snapshots\\" + testName + "_snapshot.png";
 			FileUtils.copyFile(getDriver().getScreenshotAs(OutputType.FILE),
-					new File("./" + Reporter.folderName + "/images/" + number + ".jpg"));
+					new File(snapShotPath));
 		} catch (WebDriverException e) {
-			reportStep("The browser has been closed." + e.getMessage(), "fail");
+			throw new RuntimeException("The browser has been closed." + e.getMessage());
 		} catch (IOException e) {
-			reportStep("The snapshot could not be taken " + e.getMessage(), "warning");
+			throw new RuntimeException("The snapshot could not be taken " + e.getMessage());
 		}
-		return number;
+		return snapShotPath;
 	}
 
 }

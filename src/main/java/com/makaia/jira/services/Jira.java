@@ -17,8 +17,8 @@ public class Jira {
 	
 	protected RequestSpecBuilder globalRequest() {
 		return new RequestSpecBuilder()
-				   .setBaseUri(config("jira.baseUri"))	
-				   .setBasePath(config("jira.basePath"))
+				   .setBaseUri(config("jira.base.uri"))	
+				   .setBasePath(config("jira.base.path"))
 				   .setUsername(config("jira.username"))
 			       .setPassword(secret("jira.api.token"))
 			       .setPreemptive(true)

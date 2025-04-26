@@ -1,6 +1,5 @@
 package com.makaia.uibank.tests;
 
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.makaia.testng.hooks.UiBankHooks;
@@ -10,15 +9,7 @@ import com.makaia.uibank.pages.LoginPage;
 
 public class UIBankTest extends UiBankHooks {
 	
-	private static String nickName = "TEST Nick Name";
-	
-	@BeforeTest
-	public void beforeTest() {
-		testcaseName = "UIBankTest";
-		testDescription = "Validation of UiBank functionalities";
-		authors = "Karthikeyan";
-		category = "Smoke";
-	}
+	private static String nickName = "TEST Nick Name";	
 	
 	@Test
 	public void userShouldAbleToLogin() {

@@ -6,3 +6,6 @@ reports/
 test-output/
 src/test/resources/Secret.properties
 images/
+allure-report/
+allure-results/
+snapshots/

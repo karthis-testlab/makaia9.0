@@ -37,5 +37,11 @@ public class IssueService extends Jira {
 		JSONObject json = new JSONObject(responseBody);
 		return new IssueAttachementService(json.getString("id"));
 	}
+	
+	public IssueAttachementService extractResponseValue(String jsonPath) {
+		String responseBody = response.getBody();
+		JSONObject json = new JSONObject(responseBody);
+		return new IssueAttachementService(json.getString(jsonPath));
+	}
 
 }

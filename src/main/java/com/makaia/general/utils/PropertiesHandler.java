@@ -32,7 +32,7 @@ public class PropertiesHandler {
 			value = properties.getProperty(key);
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException(
-					"Unable to found \"src/test/resources/secret.properties\" file in the mentioned location.");
+					"Unable to found \"src/test/resources/Secret.properties\" file in the mentioned location.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
