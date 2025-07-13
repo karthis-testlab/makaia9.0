@@ -23,7 +23,20 @@ public class ListofIncidents extends TestNGHooks {
 		return this;
 	}
 	
+	public ListofIncidents filterByNumber(String incidentNumber) {		
+		getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Search']")));
+		typeAndEnter(locateElement(Locators.XPATH, "//input[@placeholder='Search']"), incidentNumber);
+		return this;
+	}
+	
 	public ListofIncidents validateIncidentCreation() {
+		getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("table#incident_table > tbody > tr:nth-child(1) > td:nth-child(3) > a")));
+		boolean actual = getElementText(locateElement(Locators.CSS_SELECTOR, "table#incident_table > tbody > tr:nth-child(1) > td:nth-child(3) > a")).equals(incidentNumber);
+		assertThat("Unable to find "+incidentNumber+" newly created incident in the incident_list table", actual);
+		return this;
+	}
+	
+	public ListofIncidents validateIncidentCreation(String incidentNumber) {
 		getWait().until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("table#incident_table > tbody > tr:nth-child(1) > td:nth-child(3) > a")));
 		boolean actual = getElementText(locateElement(Locators.CSS_SELECTOR, "table#incident_table > tbody > tr:nth-child(1) > td:nth-child(3) > a")).equals(incidentNumber);
 		assertThat("Unable to find "+incidentNumber+" newly created incident in the incident_list table", actual);

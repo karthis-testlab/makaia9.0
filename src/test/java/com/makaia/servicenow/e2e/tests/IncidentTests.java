@@ -10,19 +10,21 @@ import com.makaia.testng.hooks.TestNGHooks;
 
 public class IncidentTests extends TestNGHooks {
 	
+	String incidentNumber;
+	
 	@Test
 	public void userShouldAbleToCreateNewIncidentInUI() {
 		new LoginPage()
 		    .enterUserName(config("makaia.servicenow.username"))
 		    .enterPassword(secret("service.now.instance.password"))
 		    .clickLoingButton()
+		    .gotoIncidentPage()
 		    .getIncidentNumber()
 		    .enterCallerId("Service Desk")
 		    .enterShortDescription("Sub")
 		    .clickSubmitButton()
 		    .filterByNumber()
-		    .validateIncidentCreation();
-		
+		    .validateIncidentCreation();		
 	}
 	
 	@Test
@@ -31,6 +33,27 @@ public class IncidentTests extends TestNGHooks {
 		    .fetchIncidentRecordByNumber(incidentNumber)
 		    .validateSuccessResponse()
 		    .validateIncidentNumber(incidentNumber);	
+	}
+	
+	@Test
+	public void userShouldAbleToCreatedIncidentInAPI() {
+		incidentNumber = new IncidentSerivce()
+				             .createIncidentRecord()
+				             .validateCreationResponse()
+				             .extractIncidentNumber("result.number");
+		System.out.println(incidentNumber);
+	}
+	
+	@Test
+	public void userShouldAbleToSeeIncidentInUI() {
+		new LoginPage()
+		    .enterUserName(config("makaia.servicenow.username"))
+		    .enterPassword(secret("service.now.instance.password"))
+		    .clickLoingButton()
+		    .gotoListofIncidentsPage()
+		    .filterByNumber(incidentNumber)
+		    .validateIncidentCreation(incidentNumber);
+		
 	}
 
 }

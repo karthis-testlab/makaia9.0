@@ -9,6 +9,7 @@ import com.makaia.api.rest.assured.base.ResponseContentType;
 import com.makaia.servicenow.pojos.IncidentRequestPayload;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 
 public class IncidentSerivce extends ServiceNow {
 	
@@ -118,6 +119,11 @@ public class IncidentSerivce extends ServiceNow {
 				            .getString("number");
 		MatcherAssert.assertThat(actual, Matchers.equalTo(expected));
 		return this;
+	}
+	
+	public String extractIncidentNumber(String jsonPath) {
+		JsonPath json = new JsonPath(response.getBody());
+		return json.getString(jsonPath);
 	}
 
 }

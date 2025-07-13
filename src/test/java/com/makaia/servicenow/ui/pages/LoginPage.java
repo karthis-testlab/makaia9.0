@@ -20,9 +20,17 @@ public class LoginPage extends TestNGHooks {
 		return this;
 	}
 
-	public IncidentPage clickLoingButton() {
+	public LoginPage clickLoingButton() {
 		click(locateElement(Locators.ID, "sysverb_login"));
+		return this;
+	}
+	
+	public IncidentPage gotoIncidentPage() {
 		return new IncidentPage();
+	}
+	
+	public ListofIncidents gotoListofIncidentsPage() {
+		return new ListofIncidents();
 	}
 
 }

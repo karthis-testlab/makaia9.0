@@ -22,7 +22,7 @@ public class IssueService extends Jira {
 		Fields fields = new Fields();
 		IssueType issueType = new IssueType();
 		Project project = new Project();
-		project.setKey("TES");
+		project.setKey("SB");
 		issueType.setName("Bug");
 		fields.setSummary(summary);
 		fields.setProject(project);
