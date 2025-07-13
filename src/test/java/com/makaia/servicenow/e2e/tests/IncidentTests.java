@@ -10,7 +10,7 @@ import com.makaia.testng.hooks.TestNGHooks;
 
 public class IncidentTests extends TestNGHooks {
 	
-	String incidentNumber;
+	String number;
 	
 	@Test
 	public void userShouldAbleToCreateNewIncidentInUI() {
@@ -37,11 +37,11 @@ public class IncidentTests extends TestNGHooks {
 	
 	@Test
 	public void userShouldAbleToCreatedIncidentInAPI() {
-		incidentNumber = new IncidentSerivce()
+		number = new IncidentSerivce()
 				             .createIncidentRecord()
 				             .validateCreationResponse()
 				             .extractIncidentNumber("result.number");
-		System.out.println(incidentNumber);
+		System.out.println(number);
 	}
 	
 	@Test
@@ -51,8 +51,8 @@ public class IncidentTests extends TestNGHooks {
 		    .enterPassword(secret("service.now.instance.password"))
 		    .clickLoingButton()
 		    .gotoListofIncidentsPage()
-		    .filterByNumber(incidentNumber)
-		    .validateIncidentCreation(incidentNumber);
+		    .filterByNumber(number)
+		    .validateIncidentCreation(number);
 		
 	}
 
