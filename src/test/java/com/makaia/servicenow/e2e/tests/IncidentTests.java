@@ -12,7 +12,7 @@ public class IncidentTests extends TestNGHooks {
 	
 	String number;
 	
-	@Test
+	@Test(priority = 1)
 	public void userShouldAbleToCreateNewIncidentInUI() {
 		new LoginPage()
 		    .enterUserName(config("makaia.servicenow.username"))
@@ -27,7 +27,7 @@ public class IncidentTests extends TestNGHooks {
 		    .validateIncidentCreation();		
 	}
 	
-	@Test
+	@Test(priority = 2)
 	public void userShouldAbleToFetchUICreatedIncidentInAPI() {
 		new IncidentSerivce()
 		    .fetchIncidentRecordByNumber(incidentNumber)
@@ -35,7 +35,7 @@ public class IncidentTests extends TestNGHooks {
 		    .validateIncidentNumber(incidentNumber);	
 	}
 	
-	@Test
+	@Test(priority = 2)
 	public void userShouldAbleToCreatedIncidentInAPI() {
 		number = new IncidentSerivce()
 				             .createIncidentRecord()
@@ -44,7 +44,7 @@ public class IncidentTests extends TestNGHooks {
 		System.out.println(number);
 	}
 	
-	@Test
+	@Test(priority = 3)
 	public void userShouldAbleToSeeIncidentInUI() {
 		new LoginPage()
 		    .enterUserName(config("makaia.servicenow.username"))
