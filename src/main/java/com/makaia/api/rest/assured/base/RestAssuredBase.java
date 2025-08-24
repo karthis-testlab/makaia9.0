@@ -1,6 +1,8 @@
 package com.makaia.api.rest.assured.base;
 
-import com.google.gson.Gson;
+import java.io.File;
+import java.util.Map;
+
 import com.makaia.api.design.ApiClient;
 import com.makaia.api.design.ResponseAPI;
 
@@ -21,36 +23,106 @@ public class RestAssuredBase implements ApiClient {
 
 	@Override
 	public ResponseAPI get(RequestSpecification request, String endPoint) {
-		response = given(request).get(endPoint);
+
+		response = given(request).urlEncodingEnabled(false).get(endPoint);
+
 		return new RestAssuredResponseBase(response);
 	}
 
 	@Override
+	public ResponseAPI post(RequestSpecification request, String endPoint, String body) {
+
+		response = given(request).body(body).post(endPoint);
+
+		return new RestAssuredResponseBase(response);
+	}
+	
+	@Override
 	public ResponseAPI post(RequestSpecification request, String endPoint) {
-		response = given(request)				   				   
-				   .post(endPoint);
+
+		response = given(request).post(endPoint);
+
+		return new RestAssuredResponseBase(response);
+	}
+
+	@Override
+	public ResponseAPI post(RequestSpecification request, String endPoint, File body) {
+		
+		response = given(request).body(body).post(endPoint);
+
 		return new RestAssuredResponseBase(response);
 	}
 
 	@Override
 	public ResponseAPI post(RequestSpecification request, String endPoint, Object body) {
-		response = given(request)				   
-				   .body(body)
-				   .post(endPoint);
+		
+		response = given(request).body(body).post(endPoint);
+
 		return new RestAssuredResponseBase(response);
-	}	
+	}
+
+	@Override
+	public ResponseAPI post(RequestSpecification request, String endPoint, Map<String, Object> body) {
+		
+		response = given(request).formParams(body).post(endPoint);
+
+		return new RestAssuredResponseBase(response);
+	}
+
+	@Override
+	public ResponseAPI put(RequestSpecification request, String endPoint, String body) {
+		
+		response = given(request).body(body).put(endPoint);
+
+		return new RestAssuredResponseBase(response);
+	}
+
+	@Override
+	public ResponseAPI put(RequestSpecification request, String endPoint, File body) {
+		
+		response = given(request).body(body).put(endPoint);
+
+		return new RestAssuredResponseBase(response);
+	}
 
 	@Override
 	public ResponseAPI put(RequestSpecification request, String endPoint, Object body) {
-		return new RestAssuredResponseBase(
-				   given(request)
-				   .body(new Gson().toJson(body))
-				   .put(endPoint));
+		
+		response = given(request).body(body).put(endPoint);
+
+		return new RestAssuredResponseBase(response);
+	}
+
+	@Override
+	public ResponseAPI patch(RequestSpecification request, String endPoint, String body) {
+		
+		response = given(request).body(body).patch(endPoint);
+
+		return new RestAssuredResponseBase(response);
+	}
+
+	@Override
+	public ResponseAPI patch(RequestSpecification request, String endPoint, File body) {
+		
+		response = given(request).body(body).patch(endPoint);
+
+		return new RestAssuredResponseBase(response);
+	}
+
+	@Override
+	public ResponseAPI patch(RequestSpecification request, String endPoint, Object body) {
+		
+		response = given(request).body(body).patch(endPoint);
+
+		return new RestAssuredResponseBase(response);
 	}
 
 	@Override
 	public ResponseAPI delete(RequestSpecification request, String endPoint) {
-		return new RestAssuredResponseBase(given(request).delete(endPoint));
+		
+		response = given(request).delete(endPoint);
+		
+		return new RestAssuredResponseBase(response);
 	}
 
 }

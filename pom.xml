@@ -1,7 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.makaia.framework.6.0</groupId>
-  <artifactId>makaia8.0</artifactId>
+  <groupId>com.makaia.framework.9.0</groupId>
+  <artifactId>makaia9.0</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<java.version>17</java.version>
@@ -20,6 +20,7 @@
 		<cucumber.testng.version>6.11.0</cucumber.testng.version>
 		<cucumber.picocontainer.version>6.11.0</cucumber.picocontainer.version>
 		<allure.report.version>2.24.0</allure.report.version>
+		<java.faker.version>1.0.2</java.faker.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -101,6 +102,11 @@
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-rest-assured</artifactId>			
+		</dependency>
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>${java.faker.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
