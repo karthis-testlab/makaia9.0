@@ -23,7 +23,7 @@ uibank.password=**uibank-api-password**
 - Step 4: Confirm the allure report installaisation type below command **"allure --version"**
 - Step 5: To generate the html report **"allure generate allure-results -o reports/allure-html-report --clean"**
 - Step 6: In-order to view the allure html report we need to type **"allure serve"**
-- Step 7: Add below package name in the @CucumberOptions plugin porperty **"io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"**
+- Step 7: Add below package name in the **@CucumberOptions** plugin porperty **"io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"**
 
 ```
 <!-- Define the version of Allure you want to use via the allure.version property -->
