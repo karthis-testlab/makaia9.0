@@ -18,7 +18,7 @@ uibank.password=**uibank-api-password**
 
 # Allure Report Integration
 - Step 1: Add depenceies for **TestNG** and **Cucumber** in pom.xml
-- Step 2: Create one properties file as name **"allure.properties"** under "src/test/resources" folder
+- Step 2: Create one properties file as name **"allure.properties"** under **"src/test/resources"** folder
 - Step 3: Install allure npm package globally using command **"npm i -g allure-commandline"**
 - Step 4: Confirm the allure report installaisation type below command **"allure --version"**
 - Step 5: To generate the html report **"allure generate allure-results -o reports/allure-html-report --clean"**
